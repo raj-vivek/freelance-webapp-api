@@ -64,7 +64,7 @@ const uploadCategoriesData = () => {
     console.log(item);
     const newCat = new Category(item);
     try {
-      const savedCat = newCat.save();
+      // const savedCat = newCat.save();
     } catch (error) {
       next(error);
     }

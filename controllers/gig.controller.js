@@ -41,19 +41,6 @@ export const deleteGig = async (req, res, next) => {
   }
 };
 
-// export const deleteGig = async (req, res, next) => {
-//   try {
-//     const gig = await Gig.findById(req.params.id);
-//     if (gig.userId !== req.userId)
-//       return next(createError(403, "You can delete only your gig!"));
-
-//     await Gig.findByIdAndDelete(req.params.id);
-//     res.status(200).send("Gig has been deleted!");
-//   } catch (err) {
-//     next(err);
-//   }
-// };
-
 export const getGig = async (req, res, next) => {
   try {
     const gig = await Gig.findById(req.params.id);
@@ -66,16 +53,6 @@ export const getGig = async (req, res, next) => {
     next(error);
   }
 };
-
-// export const getGig = async (req, res, next) => {
-//   try {
-//     const gig = await Gig.findById(req.params.id);
-//     if (!gig) next(createError(404, "Gig not found!"));
-//     res.status(200).send(gig);
-//   } catch (err) {
-//     next(err);
-//   }
-// };
 
 export const getGigs = async (req, res, next) => {
   const q = req.query;
@@ -91,11 +68,6 @@ export const getGigs = async (req, res, next) => {
     ...(q.search && { title: { $regex: q.search, $options: "i" } }),
   };
   try {
-    // We are using square brackets in [q.sort] because in the objeft {} we need the key to be the string stored at q.sort
-    // Uncomment below logs to understand
-    // const temp = q.sort;
-    // console.log({ temp: -1 });
-    // console.log({ [temp]: -1 });
     const gigs = await Gig.find(filters).sort({ [q.sort]: -1 });
     res.status(200).send(gigs);
   } catch (err) {
