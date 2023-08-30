@@ -25,7 +25,14 @@ const connect = async () => {
   }
 };
 
-app.use(cors({ origin: process.env.CORS_ORIGIN_URL, credentials: true })); //credentials: true - cause we are passing cookies
+app.use(
+  cors({
+    origin: process.env.CORS_ORIGIN_URL,
+    credentials: true,
+    exposedHeaders: ["set-cookie"],
+  })
+); //credentials: true - cause we are passing cookies
+// exposedHeaders: ["set-cookie"] required to expose the Set-Cookie header so it could work
 app.use(express.json());
 app.use(cookieParser());
 app.set("trust proxy", 1);
