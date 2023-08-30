@@ -30,6 +30,7 @@ app.use(
     origin: process.env.CORS_ORIGIN_URL,
     credentials: true,
     exposedHeaders: ["Set-Cookie"],
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE"
   })
 ); //credentials: true - cause we are passing cookies
 // exposedHeaders: ["set-cookie"] required to expose the Set-Cookie header so it could work
