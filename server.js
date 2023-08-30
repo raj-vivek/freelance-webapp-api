@@ -9,10 +9,8 @@ import messageRoute from "./routes/message.route.js";
 import reviewRoute from "./routes/review.route.js";
 import authRoute from "./routes/auth.route.js";
 import categoryRoute from "./routes/category.route.js";
-
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import uploadCategoriesData from "./utils/uploadCategoriesData.js";
 
 const app = express();
 dotenv.config();
@@ -27,7 +25,7 @@ const connect = async () => {
   }
 };
 
-app.use(cors({ origin: "http://localhost:5173", credentials: true })); //credentials: true - cause we are passing cookies
+app.use(cors({ origin: process.env.CORS_ORIGIN_URL, credentials: true })); //credentials: true - cause we are passing cookies
 app.use(express.json());
 app.use(cookieParser());
 
