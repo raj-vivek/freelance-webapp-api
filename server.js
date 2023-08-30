@@ -28,6 +28,7 @@ const connect = async () => {
 app.use(cors({ origin: process.env.CORS_ORIGIN_URL, credentials: true })); //credentials: true - cause we are passing cookies
 app.use(express.json());
 app.use(cookieParser());
+app.set("trust proxy", 1);
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
