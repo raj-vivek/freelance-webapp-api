@@ -47,10 +47,10 @@ export const login = async (req, res, next) => {
     res
       .status(200)
       .cookie("accessToken", token, {
-        httpOnly: true,
-        sameSite: "none",
-        secure: "false",
-        maxAge: 60 * 60 * 1000,
+        maxAge: 3600000, // Cookie expiration time in milliseconds
+        secure: false, // Set to true if using HTTPS
+        httpOnly: true, // Prevent client-side JavaScript access
+        sameSite: 'none', // For cross-origin requests
       })
       .send(info);
   } catch (error) {

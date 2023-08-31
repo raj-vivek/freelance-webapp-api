@@ -25,15 +25,23 @@ const connect = async () => {
   }
 };
 
-app.use(
-  cors({
-    origin: process.env.CORS_ORIGIN_URL,
-    credentials: true,
-    exposedHeaders: ["Set-Cookie"],
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE"
-  })
-); //credentials: true - cause we are passing cookies
-// exposedHeaders: ["set-cookie"] required to expose the Set-Cookie header so it could work
+const corsOptions = {
+  origin: process.env.CORS_ORIGIN_URL,
+  credentials: true, // Allow cookies and other credentials to be sent
+};
+
+app.use(cors(corsOptions));
+
+// app.use(
+//   cors({
+//     origin: process.env.CORS_ORIGIN_URL,
+//     credentials: true,
+//     exposedHeaders: ["Set-Cookie"],
+//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE"
+//   })
+// ); //credentials: true - cause we are passing cookies
+// // exposedHeaders: ["set-cookie"] required to expose the Set-Cookie header so it could work
+
 app.use(express.json());
 app.use(cookieParser());
 app.set("trust proxy", 1);
